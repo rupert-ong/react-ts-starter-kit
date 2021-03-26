@@ -1,5 +1,10 @@
 import { useEffect } from "react";
 
+const obj = {
+  name: "bob",
+  age: 35,
+};
+
 const App = () => {
   useEffect(() => {
     function test() {
@@ -8,6 +13,7 @@ const App = () => {
       });
     }
 
+    console.log(Object.entries(obj));
     test().then((response) => console.log(response));
   }, []);
   return <h1>React TypeScript Starter Kit</h1>;
