@@ -3,7 +3,9 @@
     [
       "@babel/preset-env",
       {
-        "useBuiltIns": "entry"
+        "debug": true,
+        "useBuiltIns": "usage",
+        "corejs": 3
       }
     ],
     [
@@ -13,5 +15,13 @@
       }
     ],
     "@babel/preset-typescript"
+  ],
+  "plugins": [
+    [
+      "@babel/plugin-transform-runtime",
+      {
+        "regenerator": true
+      }
+    ]
   ]
 }
