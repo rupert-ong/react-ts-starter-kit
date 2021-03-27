@@ -1,6 +1,6 @@
-const { merge } = require("webpack-merge");
-
 const path = require("path");
+const { merge } = require("webpack-merge");
+const Dotenv = require("dotenv-webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 const commonConfig = {
@@ -43,11 +43,23 @@ const commonConfig = {
 const developmentConfig = {
   mode: "development",
   devtool: "cheap-module-source-map",
+  plugins: [
+    new Dotenv({
+      path: ".env.development",
+      defaults: ".env",
+    }),
+  ],
 };
 
 const productionConfig = {
   mode: "production",
   devtool: "source-map",
+  plugins: [
+    new Dotenv({
+      path: ".env.production",
+      defaults: ".env",
+    }),
+  ],
 };
 
 module.exports = (env) => {

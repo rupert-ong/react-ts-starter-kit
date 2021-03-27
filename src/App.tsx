@@ -22,6 +22,9 @@ const App = () => {
   return (
     <div id="app">
       <h1>React TypeScript Starter Kit - {process.env.NODE_ENV}</h1>
+      <p>{process.env.NAME}</p>
+      <p>{process.env.API_BASE_URL}</p>
+      <p>{process.env.ENV_ONLY}</p>
       <img src={Png} alt="React logo" width={300} />
       <img src={Svg} alt="React logo" width={300} />
     </div>
