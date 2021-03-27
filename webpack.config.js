@@ -1,7 +1,9 @@
+const { merge } = require("webpack-merge");
+
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
-module.exports = {
+const commonConfig = {
   entry: path.resolve(__dirname, "./src/index.tsx"),
   resolve: {
     extensions: [".tsx", ".ts", ".js"],
@@ -28,13 +30,32 @@ module.exports = {
     ],
   },
   output: {
-    path: path.resolve(__dirname, "/dist"),
+    path: path.resolve(__dirname, "./dist"),
     filename: "bundle.js",
   },
-  mode: "development",
   plugins: [
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, "./src/index.html"),
     }),
   ],
+};
+
+const developmentConfig = {
+  mode: "development",
+  devtool: "cheap-module-source-map",
+};
+
+const productionConfig = {
+  mode: "production",
+  devtool: "source-map",
+};
+
+module.exports = (env) => {
+  if (env.development) {
+    return merge(commonConfig, developmentConfig);
+  } else if (env.production) {
+    return merge(commonConfig, productionConfig);
+  }
+
+  throw new Error("No matching configuration was found!");
 };

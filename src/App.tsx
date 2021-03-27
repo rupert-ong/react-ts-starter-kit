@@ -21,7 +21,7 @@ const App = () => {
   }, []);
   return (
     <div id="app">
-      <h1>React TypeScript Starter Kit</h1>
+      <h1>React TypeScript Starter Kit - {process.env.NODE_ENV}</h1>
       <img src={Png} alt="React logo" width={300} />
       <img src={Svg} alt="React logo" width={300} />
     </div>
