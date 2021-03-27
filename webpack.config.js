@@ -41,12 +41,12 @@ const commonConfig = {
   ],
 };
 
-const developmentConfig = {
+const getDevelopmentConfig = (ie11 = false) => ({
   mode: "development",
-  target: "web",
+  target: ie11 ? "browserslist" : "web",
   devtool: "cheap-module-source-map",
   devServer: {
-    hot: true,
+    hot: ie11 ? false : true,
     open: true,
     historyApiFallback: true,
     port: 3000,
@@ -56,9 +56,9 @@ const developmentConfig = {
       path: ".env.development",
       defaults: ".env",
     }),
-    new ReactRefreshWebpackPlugin(),
-  ],
-};
+    !ie11 && new ReactRefreshWebpackPlugin(),
+  ].filter(Boolean),
+});
 
 const productionConfig = {
   mode: "production",
@@ -74,7 +74,7 @@ const productionConfig = {
 
 module.exports = (env) => {
   if (env.development) {
-    return merge(commonConfig, developmentConfig);
+    return merge(commonConfig, getDevelopmentConfig(env.ie11));
   } else if (env.production) {
     return merge(commonConfig, productionConfig);
   }

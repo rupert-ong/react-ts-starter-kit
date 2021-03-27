@@ -8,6 +8,7 @@
   ],
   "scripts": {
     "start": "webpack serve --env development",
+    "start:ie11": "npm run start --env ie11",
     "build": "webpack --env production",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
