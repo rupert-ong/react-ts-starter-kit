@@ -1,4 +1,7 @@
+import "./style.css";
 import { useEffect } from "react";
+import Png from "./react-logo.png";
+import Svg from "./react-logo.svg";
 
 const obj = {
   name: "bob",
@@ -16,7 +19,13 @@ const App = () => {
     console.log(Object.entries(obj));
     test().then((response) => console.log(response));
   }, []);
-  return <h1>React TypeScript Starter Kit</h1>;
+  return (
+    <div id="app">
+      <h1>React TypeScript Starter Kit</h1>
+      <img src={Png} alt="React logo" width={300} />
+      <img src={Svg} alt="React logo" width={300} />
+    </div>
+  );
 };
 
 export default App;
