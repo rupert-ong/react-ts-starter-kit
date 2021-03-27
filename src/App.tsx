@@ -2,6 +2,7 @@ import "./style.css";
 import { useEffect } from "react";
 import Png from "./react-logo.png";
 import Svg from "./react-logo.svg";
+import Counter from "./Counter";
 
 const obj = {
   name: "bob",
@@ -17,16 +18,17 @@ const App = () => {
     }
 
     console.log(Object.entries(obj));
+    console.log(process.env.NAME);
+    console.log(process.env.API_BASE_URL);
+    console.log(process.env.ENV_ONLY);
     test().then((response) => console.log(response));
   }, []);
   return (
     <div id="app">
       <h1>React TypeScript Starter Kit - {process.env.NODE_ENV}</h1>
-      <p>{process.env.NAME}</p>
-      <p>{process.env.API_BASE_URL}</p>
-      <p>{process.env.ENV_ONLY}</p>
       <img src={Png} alt="React logo" width={300} />
       <img src={Svg} alt="React logo" width={300} />
+      <Counter />
     </div>
   );
 };

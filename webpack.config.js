@@ -2,6 +2,7 @@ const path = require("path");
 const { merge } = require("webpack-merge");
 const Dotenv = require("dotenv-webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const ReactRefreshWebpackPlugin = require("@pmmmwh/react-refresh-webpack-plugin");
 
 const commonConfig = {
   entry: path.resolve(__dirname, "./src/index.tsx"),
@@ -42,17 +43,26 @@ const commonConfig = {
 
 const developmentConfig = {
   mode: "development",
+  target: "web",
   devtool: "cheap-module-source-map",
+  devServer: {
+    hot: true,
+    open: true,
+    historyApiFallback: true,
+    port: 3000,
+  },
   plugins: [
     new Dotenv({
       path: ".env.development",
       defaults: ".env",
     }),
+    new ReactRefreshWebpackPlugin(),
   ],
 };
 
 const productionConfig = {
   mode: "production",
+  target: "browserslist",
   devtool: "source-map",
   plugins: [
     new Dotenv({
