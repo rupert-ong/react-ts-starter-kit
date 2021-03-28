@@ -3,6 +3,8 @@ const { merge } = require("webpack-merge");
 const Dotenv = require("dotenv-webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const ReactRefreshWebpackPlugin = require("@pmmmwh/react-refresh-webpack-plugin");
+const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
+  .BundleAnalyzerPlugin;
 
 const commonConfig = {
   entry: path.resolve(__dirname, "./src/index.tsx"),
@@ -72,11 +74,17 @@ const productionConfig = {
   ],
 };
 
+const statsConfig = {
+  plugins: [new BundleAnalyzerPlugin()],
+};
+
 module.exports = (env) => {
   if (env.development) {
     return merge(commonConfig, getDevelopmentConfig(env.ie11));
   } else if (env.production) {
     return merge(commonConfig, productionConfig);
+  } else if (env.stats) {
+    return merge(commonConfig, productionConfig, statsConfig);
   }
 
   throw new Error("No matching configuration was found!");
