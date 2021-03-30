@@ -1,8 +1,8 @@
-import "./style.css";
 import { useEffect } from "react";
+import Counter from "./Counter";
 import Png from "./react-logo.png";
 import Svg from "./react-logo.svg";
-import Counter from "./Counter";
+import "./style.css";
 
 const obj = {
   name: "bob",
