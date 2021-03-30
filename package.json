@@ -11,7 +11,8 @@
     "start:ie11": "npm run start --env ie11",
     "build": "webpack --env production",
     "stats": "webpack --env stats",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint --fix \"./src/**/*.{js,jsx,ts,tsx,json}\""
   },
   "repository": {
     "type": "git",
