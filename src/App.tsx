@@ -1,11 +1,11 @@
-import { useEffect } from "react";
-import Counter from "./Counter";
-import Png from "./react-logo.png";
-import Svg from "./react-logo.svg";
-import "./style.css";
+import { useEffect } from 'react';
+import Counter from './Counter';
+import Png from './react-logo.png';
+import Svg from './react-logo.svg';
+import './style.css';
 
 const obj = {
-  name: "bob",
+  name: 'bob',
   age: 35,
 };
 
