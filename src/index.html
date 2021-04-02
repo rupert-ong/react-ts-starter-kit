@@ -8,5 +8,12 @@
   </head>
   <body>
     <div id="root"></div>
+    <!-- IE11 Localhost security fix: https://stackoverflow.com/questions/15114279/websocket-on-ie10-giving-a-securityerror/20145203#20145203 -->
+    <% if (process.env.NODE_ENV === 'development') { %>
+    <script
+      type="text/javascript"
+      src="https://polyfill.io/v3/polyfill.min.js?features=fetch%2Cdefault"
+    ></script>
+    <% } %>
   </body>
 </html>

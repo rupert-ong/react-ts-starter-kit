@@ -16,7 +16,11 @@ const commonConfig = {
       {
         test: /\.(ts|js)x?$/,
         exclude: /node_modules/,
-        use: [{ loader: "babel-loader" }],
+        use: [
+          {
+            loader: "babel-loader",
+          },
+        ],
       },
       {
         test: /\.css$/,
@@ -43,12 +47,11 @@ const commonConfig = {
   ],
 };
 
-const getDevelopmentConfig = (ie11 = false) => ({
+const developmentConfig = {
   mode: "development",
-  target: ie11 ? "browserslist" : "web",
   devtool: "cheap-module-source-map",
   devServer: {
-    hot: ie11 ? false : true,
+    hot: true,
     open: true,
     historyApiFallback: true,
     port: 3000,
@@ -58,13 +61,12 @@ const getDevelopmentConfig = (ie11 = false) => ({
       path: ".env.development",
       defaults: ".env",
     }),
-    !ie11 && new ReactRefreshWebpackPlugin(),
-  ].filter(Boolean),
-});
+    new ReactRefreshWebpackPlugin(),
+  ],
+};
 
 const productionConfig = {
   mode: "production",
-  target: "browserslist",
   devtool: "source-map",
   plugins: [
     new Dotenv({
@@ -80,7 +82,7 @@ const statsConfig = {
 
 module.exports = (env) => {
   if (env.development) {
-    return merge(commonConfig, getDevelopmentConfig(env.ie11));
+    return merge(commonConfig, developmentConfig);
   } else if (env.production) {
     return merge(commonConfig, productionConfig);
   } else if (env.stats) {
