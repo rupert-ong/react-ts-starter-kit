@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import Counter from './Counter';
+import Counter from './components/Counter';
 import Png from './react-logo.png';
 import Svg from './react-logo.svg';
 import './style.css';

@@ -23,10 +23,6 @@ const commonConfig = {
         ],
       },
       {
-        test: /\.css$/,
-        use: ['style-loader', 'css-loader'],
-      },
-      {
         test: /\.(?:ico|gif|png|jpg|jpeg)$/i,
         type: 'asset/resource',
       },
@@ -34,11 +30,16 @@ const commonConfig = {
         test: /\.(woff(2)?|eot|ttf|otf|svg|)$/,
         type: 'asset/inline',
       },
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader'],
+        exclude: /\.module\.css$/,
+      },
     ],
   },
   output: {
     path: path.resolve(__dirname, './dist'),
-    filename: 'bundle.js',
+    filename: '[name].[contenthash].js',
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -56,6 +57,26 @@ const developmentConfig = {
     historyApiFallback: true,
     port: 3000,
   },
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 1,
+              modules: {
+                localIdentName: '[path][name]__[local]',
+              },
+            },
+          },
+        ],
+        include: /\.module\.css$/,
+      },
+    ],
+  },
   plugins: [
     new Dotenv({
       path: '.env.development',
@@ -68,12 +89,35 @@ const developmentConfig = {
 const productionConfig = {
   mode: 'production',
   devtool: 'source-map',
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 1,
+              modules: {
+                localIdentName: '[name]__[local]--[hash:base64:5]',
+              },
+            },
+          },
+        ],
+        include: /\.module\.css$/,
+      },
+    ],
+  },
   plugins: [
     new Dotenv({
       path: '.env.production',
       defaults: '.env',
     }),
   ],
+  optimization: {
+    splitChunks: { chunks: 'all' },
+  },
 };
 
 const statsConfig = {
