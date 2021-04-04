@@ -31,7 +31,7 @@ module.exports = {
   },
   overrides: [
     {
-      files: ['webpack.config.js'],
+      files: ['*.config.js'],
       rules: {
         '@typescript-eslint/no-var-requires': 'off',
       },

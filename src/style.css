@@ -1,8 +1,10 @@
+@import './colors.css';
+
 #app {
   text-align: center;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 h1 {
-  color: orange;
+  color: var(--errorRed);
 }
