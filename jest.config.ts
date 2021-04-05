@@ -20,5 +20,15 @@ const config: Config.InitialOptions = {
       statements: -10,
     },
   },
+  reporters: [
+    'default',
+    [
+      'jest-html-reporters',
+      {
+        publicPath: './reports/html-report',
+        filename: 'index.html',
+      },
+    ],
+  ],
 };
 export default config;
