@@ -15,6 +15,9 @@ module.exports = {
     'prettier',
     'plugin:prettier/recommended',
   ],
+  env: {
+    'jest/globals': true,
+  },
   rules: {
     'no-unused-vars': 'off',
     '@typescript-eslint/no-unused-vars': ['error'],
@@ -35,6 +38,17 @@ module.exports = {
       rules: {
         '@typescript-eslint/no-var-requires': 'off',
       },
+    },
+    {
+      files: [
+        '**/__tests__/**/*.+(ts|tsx|js)',
+        '**/?(*.)+(spec|test).+(ts|tsx|js)',
+      ],
+      extends: [
+        'plugin:jest/recommended',
+        'plugin:jest/style',
+        'plugin:jest-dom/recommended',
+      ],
     },
   ],
 };
