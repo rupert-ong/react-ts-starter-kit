@@ -31,7 +31,7 @@ const App = () => {
     <div id="app">
       <h1>React TypeScript Starter Kit - {process.env.NODE_ENV}</h1>
       <img src={Png} alt="React logo" width={300} />
-      <img src={Svg} alt="React logo" width={300} />
+      <Svg width={400} role="img" />
       <Counter />
       <pre>{JSON.stringify(resolved, null, 2)}</pre>
     </div>
